@@ -1,4 +1,7 @@
 # vim: ts=4 sw=4 softtabstop=4
+- clean:
+    - '~'
+
 - defaults:
     link:
         relink: true
@@ -15,3 +18,5 @@
         path: dotfiles/shell/bashrc
     ~/.vimrc: dotfiles/vim/vimrc
     ~/.vim: dotfiles/vim
+    ~/.tmux.conf: dotfiles/tmux/tmux.conf
+    ~/.tmuxline: dotfiles/tmux/tmuxline
