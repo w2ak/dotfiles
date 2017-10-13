@@ -1,0 +1,6 @@
+# vim: ts=4 sw=4 softtabstop=4
+- link:
+    ~/.bashrc:
+        relink: true
+        force: true
+        path: dotfiles/shell/bashrc
