@@ -25,3 +25,42 @@
 [submodule "dotfiles/vim/bundle/fugitive"]
 	path = dotfiles/vim/bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+[submodule "dotfiles/vim/bundle/tabular"]
+	path = dotfiles/vim/bundle/tabular
+	url = https://github.com/godlygeek/tabular
+[submodule "dotfiles/vim/bundle/ctrlp"]
+	path = dotfiles/vim/bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim.git
+[submodule "dotfiles/vim/bundle/vimtex"]
+	path = dotfiles/vim/bundle/vimtex
+	url = https://github.com/lervag/vimtex.git
+[submodule "dotfiles/vim/bundle/tabline"]
+	path = dotfiles/vim/bundle/tabline
+	url = https://github.com/mkitt/tabline.vim.git
+[submodule "dotfiles/vim/bundle/nerdcommenter"]
+	path = dotfiles/vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "dotfiles/vim/bundle/nerdtree"]
+	path = dotfiles/vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "dotfiles/vim/bundle/syntastic"]
+	path = dotfiles/vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "dotfiles/vim/bundle/gundo"]
+	path = dotfiles/vim/bundle/gundo
+	url = https://github.com/sjl/gundo.vim.git
+[submodule "dotfiles/vim/bundle/abolish"]
+	path = dotfiles/vim/bundle/abolish
+	url = https://github.com/tpope/vim-abolish.git
+[submodule "dotfiles/vim/bundle/repeat"]
+	path = dotfiles/vim/bundle/repeat
+	url = https://github.com/tpope/vim-repeat.git
+[submodule "dotfiles/vim/bundle/speeddating"]
+	path = dotfiles/vim/bundle/speeddating
+	url = https://github.com/tpope/vim-speeddating.git
+[submodule "dotfiles/vim/bundle/surround"]
+	path = dotfiles/vim/bundle/surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "dotfiles/vim/bundle/mirror"]
+	path = dotfiles/vim/bundle/mirror
+	url = https://github.com/zenbro/mirror.vim.git

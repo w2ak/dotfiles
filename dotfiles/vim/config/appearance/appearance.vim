@@ -33,3 +33,5 @@ set cocu="nc"
 set foldmethod=syntax
 
 syntax on
+
+let g:tex_conceal = ""  " Disable LaTeX conceal mode
