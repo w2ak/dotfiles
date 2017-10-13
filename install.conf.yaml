@@ -10,7 +10,7 @@
 - shell:
     - [ git submodule update --init --recursive, Updating submodules ]
     -
-        command: ./dotfiles/powerline/install.sh
+        command: ./dotfiles/powerline.sh
         description: Installing powerline fonts
 - link:
     ~/.bashrc:
