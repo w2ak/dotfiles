@@ -20,3 +20,8 @@
     ~/.vim: dotfiles/vim
     ~/.tmux.conf: dotfiles/tmux/tmux.conf
     ~/.tmuxline: dotfiles/tmux/tmuxline
+    ~/.gitconfig:
+        force: true
+        path: dotfiles/git/config
+    ~/.gitignore: dotfiles/git/ignore
+    ~/.gitexclude: dotfiles/git/exclude

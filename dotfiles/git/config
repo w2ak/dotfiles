@@ -1,0 +1,35 @@
+[user]
+	email = neze@eleves.polytechnique.fr
+	name = neze
+	signingkey = 2F1F95F7738D7D23
+[alias]
+	clog = log --decorate --graph --all --pretty=short --abbrev-commit
+	glog = log --all --oneline --decorate --graph
+	slog = log --oneline --decorate --graph
+	last = log --max-count=5 --decorate --graph --abbrev-commit --pretty=short --show-signature
+	rst = "! git reset --hard; git clean -fxd;"
+	cl = ! eval "git clean $(cat ~/.gitexclude) $@"
+	s = status
+	a = add
+	ap = add -p
+	pl = pull --rebase
+	ps = push
+	spr = ! git stash && git pull --rebase && git stash pop
+	d = difftool
+	m = mergetool
+	c = commit --gpg-sign --signoff
+	st = status --ignored
+[push]
+	default = matching
+[diff]
+	tool = vimdiff
+[core]
+	excludesfile = ~/.gitexclude
+	autocrlf = input
+[merge]
+	ff = only
+	tool = vimdiff
+[help]
+	autocorrect = 1
+[gpg]
+	program = gpg2
