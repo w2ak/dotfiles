@@ -1,11 +1,17 @@
 # vim: ts=4 sw=4 softtabstop=4
-- link:
-    ~/.bashrc:
+- defaults:
+    link:
         relink: true
-        force: true
-        path: dotfiles/shell/bashrc
+        force: false
+
 - shell:
     - [ git submodule update --init --recursive, Updating submodules ]
     -
         command: ./dotfiles/powerline/install.sh
         description: Installing powerline fonts
+- link:
+    ~/.bashrc:
+        force: true
+        path: dotfiles/shell/bashrc
+    ~/.vimrc: dotfiles/vim/vimrc
+    ~/.vim: dotfiles/vim
