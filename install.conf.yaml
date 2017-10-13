@@ -4,3 +4,8 @@
         relink: true
         force: true
         path: dotfiles/shell/bashrc
+- shell:
+    - [ git submodule update --init --recursive, Updating submodules ]
+    -
+        command: ./dotfiles/powerline/install.sh
+        description: Installing powerline fonts
