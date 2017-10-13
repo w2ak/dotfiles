@@ -4,6 +4,7 @@
 
 - defaults:
     link:
+        create: true
         relink: true
         force: false
 
@@ -25,3 +26,6 @@
         path: dotfiles/git/config
     ~/.gitignore: dotfiles/git/ignore
     ~/.gitexclude: dotfiles/git/exclude
+    ~/.gnupg/gpg.conf:
+        force: true
+        path: dotfiles/gnupg/gpg.conf
