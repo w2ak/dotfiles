@@ -10,13 +10,20 @@
 
 - shell:
     - [ git submodule update --init --recursive, Updating submodules ]
-    -
-        command: ./dotfiles/powerline.sh
-        description: Installing powerline fonts
+    - [ ./dotfiles/powerline.sh, Installing powerline fonts ]
+    - [ ./dotfiles/shell/zsh-install.sh, Installing zsh ]
+    - [ ./dotfiles/shell/zsh-setup.sh, Setting up zsh as default shell ]
+
 - link:
     ~/.bashrc:
         force: true
         path: dotfiles/shell/bashrc
+    ~/.zshrc:
+        force: true
+        path: dotfiles/shell/zshrc
+    ~/.oh-my-zsh:
+        force: true
+        path: dotfiles/shell/oh-my-zsh
     ~/.vimrc: dotfiles/vim/vimrc
     ~/.vim: dotfiles/vim
     ~/.tmux.conf: dotfiles/tmux/tmux.conf

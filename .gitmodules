@@ -64,3 +64,6 @@
 [submodule "dotfiles/vim/bundle/mirror"]
 	path = dotfiles/vim/bundle/mirror
 	url = https://github.com/zenbro/mirror.vim.git
+[submodule "dotfiles/shell/oh-my-zsh"]
+	path = dotfiles/shell/oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git

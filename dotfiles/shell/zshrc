@@ -1,0 +1,195 @@
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="bureau"
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git gitfast git-extras sudo catimg common-aliases lol tmux)
+
+# User configuration
+
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/.scripts:$HOME/bin"
+if [[ -d "/usr/local/texlive/2016/bin/x86_64-linux" ]]; then
+    export PATH="$PATH:/usr/local/texlive/2016/bin/x86_64-linux";
+fi
+# export MANPATH="/usr/local/man:$MANPATH"
+
+#if [[ "$SSH_CLIENT" != "" ]]
+#then
+#    if [[ "$SIMPLE_STYLE" == "1" ]]
+#    then
+#        ans="y";
+#    elif [[ "$SIMPLE_STYLE" == "0" ]]
+#    then
+#        ans="n";
+#    else
+#        echo -n "Simple style ? (y/n) "
+#        read ans
+#    fi
+#    [[ "$ans" == "y" ]] && {ZSH_THEME="bureau"; export SIMPLE_STYLE=1;}
+#    [[ "$ans" == "n" ]] && {export SIMPLE_STYLE=0;}
+#fi
+
+if [ -f $HOME/.zsh_perso ]; then source $HOME/.zsh_perso; fi
+
+source $ZSH/oh-my-zsh.sh
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+export EDITOR='/usr/bin/vim'
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export SCRIPTS_PERSO="/home/neze/.scripts"
+# export http_proxy="http://129.104.247.2:8080"
+# export https_proxy=$http_proxy
+
+alias stext="/opt/sublime_text/sublime_text $1"
+alias telegram="/home/neze/apps/Telegram/Telegram"
+alias cls="cd ~; clear"
+
+alias coin="echo pan !"
+alias coucou="echo Bonjour $(whoami) !"
+
+# pdfc () { pdflatex -interaction=nonstopmode "$@" ; }
+bibc () { bibtex "$@" ; }
+# texc () { pdfc "$@.tex" ; bibc "$@.aux" ; pdfc "$@.tex" ; pdfc "$@.tex" ; }
+texenv () { stext "$@.tex" & evince "$@.pdf"; }
+# nouveautex () { mkdir "$@" ; cd "$@" ; cp "/home/neze/Documents/tex/modele/base.tex" "$@.tex" ; }
+
+sshi () { eval $(ssh-agent) ; ssh-add ; }
+
+ssht () { for host in $(cat "$@") ; do echo $host ; ssh -t $host './script.sh' ; done; }
+
+sshtb () { for host in $(cat "$@") ; do echo $host ; ssh -t $host './scriptbis.sh' ; done; }
+
+tmx () {
+    tmux attach -t 0;
+    if [ $? == 1 ];
+        then
+        tmux;
+    fi;
+}
+
+trytheme () {
+    ZSH_THEME="$@";
+    source $ZSH/oh-my-zsh.sh;
+}
+
+nezeupdate () {
+        sudo apt-get update;
+        sudo apt-get -y dist-upgrade;
+        sudo apt-get -y autoremove;
+        sudo apt-get -y autoclean;
+}
+
+cd () {
+    builtin cd "$@";
+    # look for a message file
+    [[ -f ".warning" ]] && {echo -en "\033[00;00m\033[01;31m"; cat ".warning"; echo -en "\033[00;00m";}
+    [[ -f ".message" ]] && {echo -en "\033[00;00m\033[00;33m"; cat ".message"; echo -en "\033[00;00m";}
+    {[[ -f ".env" ]] && {source ".env";}} || {
+        [[ -d ".git" ]] && {git status;}
+    }
+    [[ 1 == 1 ]];
+}
+
+cd ./
+
+# alias cat=lolcat
+
+lolsudo () {
+    echo -n "[lolsudo] password for $(whoami): "
+    stty -echo
+    read pass
+    stty echo
+    echo ""
+    sleep 2.5
+    echo "Sorry, try again."
+    sudo $@ |& sed '/incorrect/ d'
+}
+
+# alias sudo=lolsudo
+
+tempdir () {
+    d=`mktemp -d`;
+    chmod -R 700 $d;
+    sh -c "rm -rf $d/*";
+    cd $d;
+}
+
+alias rm=rm
+
+alias manage="python3 -m manage"
+
+autoload bashcompinit
+bashcompinit
+autoload compinit
+compinit
+source /etc/bash_completion.d/python-argcomplete.sh
+
+if [ -f $HOME/.zsh_override ]; then source $HOME/.zsh_override; fi
