@@ -36,3 +36,6 @@
     ~/.gnupg/gpg.conf:
         force: true
         path: dotfiles/gnupg/gpg.conf
+
+- shell:
+    - [ ./dotfiles/ssh/init.sh, SSH Initialization ]
