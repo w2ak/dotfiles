@@ -27,7 +27,9 @@
     ~/.vimrc: dotfiles/vim/vimrc
     ~/.vim: dotfiles/vim
     ~/.tmux.conf: dotfiles/tmux/tmux.conf
-    ~/.tmuxline: dotfiles/tmux/tmuxline
+    ~/.tmuxline.blue: dotfiles/tmux/tmuxline.blue
+    ~/.tmuxline.red: dotfiles/tmux/tmuxline.red
+    ~/.tmuxline.green: dotfiles/tmux/tmuxline.green
     ~/.gitconfig:
         force: true
         path: dotfiles/git/config
