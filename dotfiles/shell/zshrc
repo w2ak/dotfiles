@@ -193,3 +193,5 @@ compinit
 source /etc/bash_completion.d/python-argcomplete.sh
 
 if [ -f $HOME/.zsh_override ]; then source $HOME/.zsh_override; fi
+
+export GPG_TTY=$(tty)
