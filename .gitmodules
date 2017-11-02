@@ -67,3 +67,6 @@
 [submodule "dotfiles/shell/oh-my-zsh"]
 	path = dotfiles/shell/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
+[submodule "dotfiles/shell/oh-my-zsh.custom/plugins/alias-tips"]
+	path = dotfiles/shell/oh-my-zsh.custom/plugins/alias-tips
+	url = https://github.com/djui/alias-tips.git
