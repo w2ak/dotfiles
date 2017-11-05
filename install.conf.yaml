@@ -8,6 +8,11 @@
         relink: true
         force: false
 
+- link:
+    ~/.gitconfig:
+        force: true
+        path: dotfiles/git/config
+
 - shell:
     -
         command: git submodule update --init --recursive
@@ -36,9 +41,6 @@
     ~/.tmuxline.blue: dotfiles/tmux/tmuxline.blue
     ~/.tmuxline.red: dotfiles/tmux/tmuxline.red
     ~/.tmuxline.green: dotfiles/tmux/tmuxline.green
-    ~/.gitconfig:
-        force: true
-        path: dotfiles/git/config
     ~/.gitignore: dotfiles/git/ignore
     ~/.gitexclude: dotfiles/git/exclude
     ~/.gnupg/gpg.conf:
