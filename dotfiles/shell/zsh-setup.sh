@@ -5,7 +5,7 @@ if ! which zsh &>/dev/null; then
 fi
 
 ZSH_BIN=$(which zsh)
-USR_SHELL=$(cat /etc/passwd | awk -F: '{ print $3 ":" $4 ":" $NF }' | grep "^$(id -u):$(id -g):" | awk -F: '{ print $NF }')
+USR_SHELL=$(getent passwd "$(id -nu)" | cut -d: -f7)
 
 if [[ "$ZSH_BIN" == "$USR_SHELL" ]]; then
   echo "ZSH is already the user shell";
