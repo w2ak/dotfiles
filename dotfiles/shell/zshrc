@@ -186,11 +186,11 @@ alias rm=rm
 
 alias manage="python3 -m manage"
 
-autoload bashcompinit
-bashcompinit
-autoload compinit
-compinit
-source /etc/bash_completion.d/python-argcomplete.sh
+#autoload bashcompinit
+#bashcompinit
+#autoload compinit
+#compinit
+#source /etc/bash_completion.d/python-argcomplete.sh
 
 if [ -f $HOME/.zsh_override ]; then source $HOME/.zsh_override; fi
 
