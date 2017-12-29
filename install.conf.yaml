@@ -39,6 +39,7 @@
     ~/.oh-my-zsh:
         force: true
         path: dotfiles/shell/oh-my-zsh
+    ~/bin: dotfiles/bin
     ~/.vimrc: dotfiles/vim/vimrc
     ~/.vim: dotfiles/vim
     ~/.tmux.conf: dotfiles/tmux/tmux.conf

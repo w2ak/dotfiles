@@ -52,7 +52,7 @@ plugins=(git gitfast git-extras sudo catimg common-aliases lol tmux alias-tips c
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/.scripts:$HOME/bin"
+export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/.scripts"
 if [[ -d "/usr/local/texlive/2016/bin/x86_64-linux" ]]; then
     export PATH="$PATH:/usr/local/texlive/2016/bin/x86_64-linux";
 fi
@@ -186,10 +186,10 @@ alias rm=rm
 
 alias manage="python3 -m manage"
 
-#autoload bashcompinit
-#bashcompinit
-#autoload compinit
-#compinit
+autoload bashcompinit
+bashcompinit
+autoload compinit
+compinit
 #source /etc/bash_completion.d/python-argcomplete.sh
 
 if [ -f $HOME/.zsh_override ]; then source $HOME/.zsh_override; fi

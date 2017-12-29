@@ -70,3 +70,6 @@
 [submodule "dotfiles/shell/oh-my-zsh.custom/plugins/alias-tips"]
 	path = dotfiles/shell/oh-my-zsh.custom/plugins/alias-tips
 	url = https://github.com/djui/alias-tips.git
+[submodule "dotfiles/bin"]
+	path = dotfiles/bin
+	url = git@framagit.org:neze/binfolder.git
