@@ -1,7 +1,10 @@
 [user]
-	email = neze@eleves.polytechnique.fr
+	email = clement@neze.fr
 	name = neze
-	signingkey = 2F1F95F7738D7D23
+	signingkey = EF2D00C6CAA88D40
+[gcrypt]
+	participants = "0xEF2D00C6CAA88D40"
+	publish-participants = true
 [alias]
 	clog = log --decorate --graph --all --pretty=short --abbrev-commit
 	glog = log --all --oneline --decorate --graph
