@@ -21,13 +21,6 @@
         stderr: true
 
     - [ ./dotfiles/powerline.sh, Installing powerline fonts ]
-    - [ ./dotfiles/shell/zsh-install.sh, Installing zsh ]
-    -
-        command: ./dotfiles/shell/zsh-setup.sh
-        description: Setting up zsh as default shell
-        stdin: true
-        stdout: true
-        stdout: true
 
 - link:
     ~/.bashrc:
