@@ -48,11 +48,11 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast git-extras sudo catimg common-aliases lol tmux alias-tips colored-man-pages pass)
+plugins=(git gitfast git-extras sudo catimg common-aliases lol tmux alias-tips colored-man-pages pass virtualenv virtualenvwrapper)
 
 # User configuration
 
-export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/.scripts"
+export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/.scripts"
 if [[ -d "/usr/local/texlive/2016/bin/x86_64-linux" ]]; then
     export PATH="$PATH:/usr/local/texlive/2016/bin/x86_64-linux";
 fi
