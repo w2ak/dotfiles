@@ -48,7 +48,16 @@ ZSH_THEME="bureau"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git gitfast git-extras sudo catimg common-aliases lol tmux alias-tips colored-man-pages pass virtualenv virtualenvwrapper)
+plugins=(git gitfast git-extras sudo catimg common-aliases lol alias-tips colored-man-pages)
+if which tmux &>/dev/null; then
+  plugins+=(tmux)
+fi
+if which pass &>/dev/null; then
+  plugins+=(pass)
+fi
+if which virtualenv &>/dev/null; then
+  plugins+=(virtualenv virtualenvwrapper)
+fi
 
 # User configuration
 
@@ -57,22 +66,6 @@ if [[ -d "/usr/local/texlive/2016/bin/x86_64-linux" ]]; then
     export PATH="$PATH:/usr/local/texlive/2016/bin/x86_64-linux";
 fi
 # export MANPATH="/usr/local/man:$MANPATH"
-
-#if [[ "$SSH_CLIENT" != "" ]]
-#then
-#    if [[ "$SIMPLE_STYLE" == "1" ]]
-#    then
-#        ans="y";
-#    elif [[ "$SIMPLE_STYLE" == "0" ]]
-#    then
-#        ans="n";
-#    else
-#        echo -n "Simple style ? (y/n) "
-#        read ans
-#    fi
-#    [[ "$ans" == "y" ]] && {ZSH_THEME="bureau"; export SIMPLE_STYLE=1;}
-#    [[ "$ans" == "n" ]] && {export SIMPLE_STYLE=0;}
-#fi
 
 if [ -f $HOME/.zsh_perso ]; then source $HOME/.zsh_perso; fi
 
@@ -104,76 +97,13 @@ export EDITOR='/usr/bin/vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export SCRIPTS_PERSO="/home/neze/.scripts"
-# export http_proxy="http://129.104.247.2:8080"
-# export https_proxy=$http_proxy
-
-alias stext="/opt/sublime_text/sublime_text $1"
-alias telegram="/home/neze/apps/Telegram/Telegram"
-alias cls="cd ~; clear"
-
-alias coin="echo pan !"
-alias coucou="echo Bonjour $(whoami) !"
-
-# pdfc () { pdflatex -interaction=nonstopmode "$@" ; }
-bibc () { bibtex "$@" ; }
-# texc () { pdfc "$@.tex" ; bibc "$@.aux" ; pdfc "$@.tex" ; pdfc "$@.tex" ; }
-texenv () { stext "$@.tex" & evince "$@.pdf"; }
-# nouveautex () { mkdir "$@" ; cd "$@" ; cp "/home/neze/Documents/tex/modele/base.tex" "$@.tex" ; }
-
 sshi () { eval $(ssh-agent) ; ssh-add ; }
 
 ssht () { for host in $(cat "$@") ; do echo $host ; ssh -t $host './script.sh' ; done; }
 
 sshtb () { for host in $(cat "$@") ; do echo $host ; ssh -t $host './scriptbis.sh' ; done; }
 
-tmx () {
-    tmux attach -t 0;
-    if [ $? == 1 ];
-        then
-        tmux;
-    fi;
-}
-
-trytheme () {
-    ZSH_THEME="$@";
-    source $ZSH/oh-my-zsh.sh;
-}
-
-nezeupdate () {
-        sudo apt-get update;
-        sudo apt-get -y dist-upgrade;
-        sudo apt-get -y autoremove;
-        sudo apt-get -y autoclean;
-}
-
-cd () {
-    builtin cd "$@";
-    # look for a message file
-    [[ -f ".warning" ]] && {echo -en "\033[00;00m\033[01;31m"; cat ".warning"; echo -en "\033[00;00m";}
-    [[ -f ".message" ]] && {echo -en "\033[00;00m\033[00;33m"; cat ".message"; echo -en "\033[00;00m";}
-    {[[ -f ".env" ]] && {source ".env";}} || {
-        [[ -d ".git" ]] && {git status;}
-    }
-    [[ 1 == 1 ]];
-}
-
-cd ./
-
 # alias cat=lolcat
-
-lolsudo () {
-    echo -n "[lolsudo] password for $(whoami): "
-    stty -echo
-    read pass
-    stty echo
-    echo ""
-    sleep 2.5
-    echo "Sorry, try again."
-    sudo $@ |& sed '/incorrect/ d'
-}
-
-# alias sudo=lolsudo
 
 tempdir () {
     d=`mktemp -d`;
@@ -190,8 +120,31 @@ autoload bashcompinit
 bashcompinit
 autoload compinit
 compinit
-#source /etc/bash_completion.d/python-argcomplete.sh
+
+# FIX GPG PROBLEMS WITH SUDO
+export GPG_TTY=$(tty)
+function impersonate () {
+  set -v
+  user=$1; shift
+  if ! getent passwd ${user} &>/dev/null; then
+    echo >&2 "${user}: No such user."
+    return 1
+  fi
+  if [ -n "${DISPLAY}" -a $(xhost +"si:localuser:${user}" 2>&1 >/dev/null | wc -l) -gt 0 ]; then
+    #echo >&2 "Error when opening xhost for user ${user}."
+    #return 1
+  fi
+  echo >&2 "Giving tty ownership to ${user}"
+  sudo chown ${user} ${GPG_TTY}
+  echo >&2 "Login in as ${user}"
+  DISPLAY= sudo -iu ${user}
+  if [ -n "${DISPLAY}" -a $(xhost -"si:localuser:${user}" 2>&1 >/dev/unll | wc -l) -gt 0 ]; then
+    #echo >&2 "Error when closing xhost for user ${user}."
+    #return 1
+  fi
+  echo >&2 "Taking back tty ownership"
+  sudo chown $(whoami) ${GPG_TTY}
+  set +v
+}
 
 if [ -f $HOME/.zsh_override ]; then source $HOME/.zsh_override; fi
-
-export GPG_TTY=$(tty)
