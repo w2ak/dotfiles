@@ -49,6 +49,13 @@ ZSH_THEME="bureau"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git gitfast git-extras sudo catimg common-aliases lol alias-tips colored-man-pages)
+# User configuration
+
+export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/.scripts"
+if [[ -d "/usr/local/texlive/2016/bin/x86_64-linux" ]]; then
+    export PATH="$PATH:/usr/local/texlive/2016/bin/x86_64-linux";
+fi
+# export MANPATH="/usr/local/man:$MANPATH"
 if which tmux &>/dev/null; then
   plugins+=(tmux)
 fi
@@ -59,13 +66,6 @@ if which virtualenv &>/dev/null; then
   plugins+=(virtualenv virtualenvwrapper)
 fi
 
-# User configuration
-
-export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/.scripts"
-if [[ -d "/usr/local/texlive/2016/bin/x86_64-linux" ]]; then
-    export PATH="$PATH:/usr/local/texlive/2016/bin/x86_64-linux";
-fi
-# export MANPATH="/usr/local/man:$MANPATH"
 
 if [ -f $HOME/.zsh_perso ]; then source $HOME/.zsh_perso; fi
 
