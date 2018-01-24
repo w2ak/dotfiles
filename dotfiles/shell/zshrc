@@ -130,17 +130,17 @@ function impersonate () {
     echo >&2 "${user}: No such user."
     return 1
   fi
-  if [ -n "${DISPLAY}" -a $(xhost +"si:localuser:${user}" 2>&1 >/dev/null | wc -l) -gt 0 ]; then
-    #echo >&2 "Error when opening xhost for user ${user}."
-    #return 1
+  if [ -n "${DISPLAY}" -a $({ xhost +"si:localuser:${user}" 2>&1 >/dev/null; } | wc -l) -gt 0 ]; then
+    echo >&2 "Error when opening xhost for user ${user}."
+    return 1
   fi
   echo >&2 "Giving tty ownership to ${user}"
   sudo chown ${user} ${GPG_TTY}
-  echo >&2 "Login in as ${user}"
+  echo >&2 "Logging in as ${user}"
   DISPLAY= sudo -iu ${user}
-  if [ -n "${DISPLAY}" -a $(xhost -"si:localuser:${user}" 2>&1 >/dev/unll | wc -l) -gt 0 ]; then
-    #echo >&2 "Error when closing xhost for user ${user}."
-    #return 1
+  if [ -n "${DISPLAY}" -a $({ xhost -"si:localuser:${user}" 2>&1 >/dev/null; } | wc -l) -gt 0 ]; then
+    echo >&2 "Error when closing xhost for user ${user}."
+    return 1
   fi
   echo >&2 "Taking back tty ownership"
   sudo chown $(whoami) ${GPG_TTY}
