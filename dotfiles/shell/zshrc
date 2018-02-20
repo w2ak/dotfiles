@@ -116,10 +116,10 @@ alias rm=rm
 
 alias manage="python3 -m manage"
 
-autoload bashcompinit
-bashcompinit
-autoload compinit
-compinit
+#autoload bashcompinit
+#bashcompinit
+#autoload compinit
+#compinit
 
 # FIX GPG PROBLEMS WITH SUDO
 export GPG_TTY=$(tty)
