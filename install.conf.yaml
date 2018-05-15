@@ -46,6 +46,7 @@
         path: dotfiles/gnupg/gpg.conf
 - link:
     ~/.oh-my-zsh/custom/plugins/alias-tips: dotfiles/shell/oh-my-zsh.custom/plugins/alias-tips
+    ~/.oh-my-zsh/custom/themes: dotfiles/shell/oh-my-zsh.custom/themes
 
 - shell:
     - [ ./dotfiles/ssh/init.sh, SSH Initialization ]
