@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [ -z "${DISPLAY:+x}" ]; then
+  exit 0;
+fi
+
 script_dir=$( cd "$( dirname "$0" )" && pwd)
 
 if [[ `uname` == 'Darwin' ]]; then
