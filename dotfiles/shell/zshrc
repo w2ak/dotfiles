@@ -63,6 +63,7 @@ if which pass &>/dev/null; then
   plugins+=(pass)
 fi
 if which virtualenv &>/dev/null; then
+  export WORKON_HOME="$HOME/.virtualenvs"
   plugins+=(virtualenv virtualenvwrapper)
 fi
 
