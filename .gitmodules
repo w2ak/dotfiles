@@ -73,3 +73,6 @@
 [submodule "dotfiles/bin"]
 	path = dotfiles/bin
 	url = https://framagit.org/neze/binfolder.git
+[submodule "dotfiles/vim/bundle/localvimrc"]
+	path = dotfiles/vim/bundle/localvimrc
+	url = https://github.com/embear/vim-localvimrc.git
