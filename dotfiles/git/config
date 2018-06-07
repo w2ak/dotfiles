@@ -23,7 +23,7 @@
 	c = commit --gpg-sign --signoff
 	st = status --ignored
 [push]
-	default = matching
+	default = upstream
 [diff]
 	tool = vimdiff
 [core]
