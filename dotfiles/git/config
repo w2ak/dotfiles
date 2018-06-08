@@ -24,6 +24,7 @@
 	st = status --ignored
 [push]
 	default = upstream
+	followTags = true
 [diff]
 	tool = vimdiff
 [core]
