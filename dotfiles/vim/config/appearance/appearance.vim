@@ -10,8 +10,6 @@ set tabstop=2
 "set tw=80
 set cc=81
 
-set list listchars=tab:›─,trail:─,nbsp:␣
-
 set showcmd             " Show (partial) command in status line.
 set showmatch           " Show matching brackets.
 set ignorecase          " Do case insensitive matching
