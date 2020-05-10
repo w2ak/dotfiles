@@ -61,6 +61,7 @@ if which pass &>/dev/null; then
 fi
 if which virtualenv &>/dev/null; then
   export WORKON_HOME="$HOME/.virtualenvs"
+  export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
   plugins+=(virtualenv virtualenvwrapper)
 fi
 
