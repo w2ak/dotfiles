@@ -51,7 +51,7 @@ ZSH_THEME="bureau"
 plugins=(git gitfast git-extras sudo catimg common-aliases lol alias-tips colored-man-pages)
 # User configuration
 
-export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/bin/scripts"
 # export MANPATH="/usr/local/man:$MANPATH"
 if which tmux &>/dev/null; then
   plugins+=(tmux)
