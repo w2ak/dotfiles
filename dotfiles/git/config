@@ -41,3 +41,5 @@
 	fetchJobs = 8
 [gitreview]
 	username = w2ak
+[pull]
+	ff = only
