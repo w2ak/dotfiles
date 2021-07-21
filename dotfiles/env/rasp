@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+__ENV_ZERO="$(realpath "${BASH_SOURCE[0]-$0}")"
+crypto="/media/neze/data"
+downloads="$(realpath "$crypto/downloads")"
+series="$(realpath "$crypto/videos/series")"
+movies="$(realpath "$crypto/videos/movies")"
+VIRTUAL_ENV="$crypto"
+
+alias series="$HOME/bin/scripts/series.py -C $crypto"
+
+source /dev/stdin <<EODEF
+sub_mv () {
+  find "$downloads/done" -name '*.srt' -o -name '*.sub' -o -name '*.idx' | sort > /tmp/subs.txt
+  cat ~/series.txt | sort | grep -Ev '\.srt$|\.sub$|\.idx$' | sed -E 's%\.mp4$|\.mkv$%.srt%' > /tmp/series.txt
+  vim /tmp/series.txt /tmp/subs.txt -c ":sp" -c ":bn"
+  if [ "\$(wc -l /tmp/subs.txt|awk '{print \$1}')" -gt 0 ] && [ "\$(wc -l /tmp/series.txt|awk '{print \$1}')" -gt 0 ]; then
+    if [ "\$(wc -l /tmp/subs.txt|awk '{print \$1}')" -eq "\$(wc -l /tmp/series.txt|awk '{print \$1}')" ]; then
+      paste -d'\n' /tmp/subs.txt /tmp/series.txt | sed '/^$/,$ d' | xargs --no-run-if-empty -d'\n' -n2 mv -n
+    else
+      echo "not the same number of lines"
+    fi
+  else
+    echo "nothing to move"
+  fi
+  cat ~/series.txt >> /tmp/series.txt
+  sort -u /tmp/series.txt > ~/series.txt
+  rm /tmp/series.txt /tmp/subs.txt
+}
+
+vlc_upload () {
+  cat ~/series.txt | xargs -d'\n' vlc_upload.py -d undercover.local
+}
+
+dl_list () {
+  find "$downloads" -type f "\$@"
+}
+
+dl_clean () {
+  find "$downloads" -mindepth 1 -print -delete
+}
+
+media_backup () {
+  /media/neze/data/backup.sh -f
+}
+
+prn_tidy () {
+  find "$downloads/prn" -mindepth 2 -type f -size +10M | tee /dev/stderr | xargs -d'\n' mv -t "$downloads/prn"
+  find "$downloads/prn" -mindepth 2 -type f -size -10M -delete
+  find "$downloads/prn" -mindepth 1 -type d -empty -delete
+}
+
+prn_upload () {
+  find "$downloads/prn" -maxdepth 1 -type f -size +10M | sort -R | head -n\${1:-5} | xargs -d'\n' vlc_upload.py -d undercover.local
+}
+EODEF
+
+{
+  echo "deactivate () {"
+  grep -o '^\s*[[:alpha:]_]\+\s\+()' < "${__ENV_ZERO}" | sed 's/^\s*\(.*\)\s\+.*$/unset -f \1/'
+  grep -o '^\s*[[:alpha:]][[:alpha:]_]*=' < "${__ENV_ZERO}" | sed 's/^\s*\(.*\)=/unset \1/'
+  grep -o '^\s*alias\s\+[[:alpha:]_]\+=' < "${__ENV_ZERO}" | sed 's/^\s*\(.*\)=/un\1/'
+  echo "unset -f deactivate }"
+
+  grep -o '^\s*_[[:alpha:]_]*=' < "${__ENV_ZERO}" | sed 's/^\s*\(.*\)=/unset \1/'
+} | source /dev/stdin
