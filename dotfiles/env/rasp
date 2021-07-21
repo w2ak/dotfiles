@@ -28,7 +28,7 @@ sub_mv () {
 }
 
 vlc_upload () {
-  cat ~/series.txt | xargs -d'\n' vlc_upload.py -d undercover.local
+  cat ~/series.txt | xargs -d'\n' vlc_upload.py -d undercover.local && truncate -s0 ~/series.txt
 }
 
 dl_list () {
@@ -50,7 +50,7 @@ prn_tidy () {
 }
 
 prn_upload () {
-  find "$downloads/prn" -maxdepth 1 -type f -size +10M | sort -R | head -n\${1:-5} | xargs -d'\n' vlc_upload.py -d undercover.local
+  find "$downloads/prn" -maxdepth 1 -type f -size +10M | sort -R | head -n\${1:-5} | tee /tmp/prn.txt | xargs -d'\n' vlc_upload.py -d undercover.local && xargs -d'\n' rm -v < /tmp/prn.txt && rm /tmp/prn.txt
 }
 EODEF
 
