@@ -6,7 +6,7 @@ series="$(realpath "$crypto/videos/series")"
 movies="$(realpath "$crypto/videos/movies")"
 VIRTUAL_ENV="$crypto"
 
-alias series="$HOME/bin/scripts/series.py -C $crypto"
+alias series="$HOME/bin/scripts/series.py -vvvC $crypto"
 
 source /dev/stdin <<EODEF
 sub_mv () {
@@ -51,6 +51,12 @@ prn_tidy () {
 
 prn_upload () {
   find "$downloads/prn" -maxdepth 1 -type f -size +10M | sort -R | head -n\${1:-5} | tee /tmp/prn.txt | xargs -d'\n' vlc_upload.py -d undercover.local && xargs -d'\n' rm -v < /tmp/prn.txt && rm /tmp/prn.txt
+}
+
+big_convert () {
+  pushd "$downloads/tmp"
+  find "$downloads/big" -name '*.mkv' | xargs -d'\n' "$HOME/bin/scripts/media_tools/mkvconvert.sh" -d "$downloads/done" -r
+  popd
 }
 EODEF
 
