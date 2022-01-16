@@ -53,6 +53,8 @@ plugins=(git gitfast git-extras sudo catimg common-aliases lol alias-tips colore
 
 export PATH="$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/bin/scripts"
 # export MANPATH="/usr/local/man:$MANPATH"
+if [ -f $HOME/.zsh_perso ]; then source $HOME/.zsh_perso; fi
+
 if which tmux &>/dev/null; then
   plugins+=(tmux)
 fi
@@ -65,8 +67,6 @@ if which virtualenv &>/dev/null; then
   plugins+=(virtualenv virtualenvwrapper)
 fi
 
-
-if [ -f $HOME/.zsh_perso ]; then source $HOME/.zsh_perso; fi
 
 source $ZSH/oh-my-zsh.sh
 
